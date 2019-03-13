@@ -19,7 +19,7 @@ public class Book implements Serializable {
 	private static final long serialVersionUID = -7759431903190558099L;
 	
 	@Id @GeneratedValue
-	private Integer id;
+	private Integer idbook;
 	
 	@Column(name = "title")
 	private String title;
@@ -35,4 +35,39 @@ public class Book implements Serializable {
 	/*
 	 * Getters and setters
 	 */
+
+	
+
+	public String getTitle() {
+		return title;
+	}
+
+	public Integer getIdbook() {
+		return idbook;
+	}
+
+	public void setIdbook(Integer idbook) {
+		this.idbook = idbook;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getIsbn() {
+		return isbn;
+	}
+
+	public void setIsbn(String isbn) {
+		this.isbn = isbn;
+	}
+
+	public String getAutor() {
+		return autor;
+	}
+
+	public void setAutor(String autor) {
+		this.autor = autor;
+	}
+	
 }
