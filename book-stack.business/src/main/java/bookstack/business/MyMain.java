@@ -27,8 +27,8 @@ public class MyMain {
 	
 	@Schedule(hour="9", minute="*")
 	private void query() {
-		System.out.println("list size: "+bookDao.getBooksByTitle("example").size());
-		System.out.println("TEST");
+		//System.out.println("list size: "+bookDao.getBooksByTitle("example").size());
+		//System.out.println("TEST");
 		//bookService.createNewBook();
 		
 	}

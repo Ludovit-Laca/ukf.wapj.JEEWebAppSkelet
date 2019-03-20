@@ -1,19 +1,24 @@
 package bookstack.persistence.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name = "findBooksByName", query = "SELECT a FROM Author a WHERE a.name LIKE :name AND a.surname LIKE :surname")})
 public class Author {
 
 	@Id
 	@GeneratedValue
-	private int id;
+	private Integer id;
 	
 	@Column(name = "firstname")
 	private String name;
@@ -27,10 +32,10 @@ public class Author {
 	public Author() {
 	}
 
-	public Author(String name, String surname, List<Book> books) {
+	public Author(String name, String surname) {
 		this.name = name;
 		this.surname = surname;
-		this.books = books;
+		this.books = new ArrayList<>();
 	}
 
 	public int getId() {

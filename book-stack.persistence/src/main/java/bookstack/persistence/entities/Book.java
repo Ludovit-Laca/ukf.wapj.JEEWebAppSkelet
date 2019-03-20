@@ -2,13 +2,16 @@ package bookstack.persistence.entities;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.Transient;
 
 @Entity
 @NamedQueries({
@@ -27,24 +30,29 @@ public class Book implements Serializable {
 	@Column(name = "isbn")
 	private String isbn;
 	
-	
-	private Integer idauthor;
-	
-	public Integer getIdauthor() {
+	@ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	@JoinColumn(name = "author")
+	private Author idauthor;
+
+	public Author getIdauthor() {
 		return idauthor;
 	}
 
-	public void setIdauthor(Integer idauthor) {
+	public void setIdauthor(Author idauthor) {
 		this.idauthor = idauthor;
 	}
 
 	public Book() {}
+
+	public Book(String title, String isbn) {
+		super();
+		this.title = title;
+		this.isbn = isbn;
+	}
 	
 	/*
 	 * Getters and setters
 	 */
-
-	
 
 	public String getTitle() {
 		return title;
@@ -68,14 +76,6 @@ public class Book implements Serializable {
 
 	public void setIsbn(String isbn) {
 		this.isbn = isbn;
-	}
-
-	public String getAutor() {
-		return autor;
-	}
-
-	public void setAutor(String autor) {
-		this.autor = autor;
 	}
 	
 }
