@@ -27,9 +27,17 @@ public class Book implements Serializable {
 	@Column(name = "isbn")
 	private String isbn;
 	
-	@Transient
-	private String autor;
 	
+	private Integer idauthor;
+	
+	public Integer getIdauthor() {
+		return idauthor;
+	}
+
+	public void setIdauthor(Integer idauthor) {
+		this.idauthor = idauthor;
+	}
+
 	public Book() {}
 	
 	/*

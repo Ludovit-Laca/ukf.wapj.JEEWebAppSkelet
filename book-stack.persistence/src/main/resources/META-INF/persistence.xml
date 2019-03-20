@@ -6,8 +6,9 @@
       <jta-data-source>java:jboss/datasources/BookstackDS</jta-data-source>
       <!-- class>projectSI.persistence.entities.Book</class -->
       <properties>
-         <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/>
-         <!--property name="hibernate.bytecode.use_reflection_optimizer">false</property>
+         <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLInnoDBDialect"/>
+         <property name="hibernate.id.new_generator_mappings" value="false" />
+         <!--property name="hibernate.bytecode.use_reflection_optimizer">false HSQLDialect</property>
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/unistatsdb</property>
         <property name="hibernate.connection.username">root</property>

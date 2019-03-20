@@ -14,6 +14,9 @@ import bookstack.persistence.dao.BookDAO;
 public class MyMain {
 	
 	@Inject
+	private BookService bookService;
+	
+	@Inject
 	private BookDAO bookDao;
 	
 	@PostConstruct
@@ -22,9 +25,12 @@ public class MyMain {
 		//System.out.println("list size: "+bookDao.getBooksByTitle("example").size());
 	}
 	
-	@Schedule(hour="20", minute="26")
+	@Schedule(hour="9", minute="*")
 	private void query() {
 		System.out.println("list size: "+bookDao.getBooksByTitle("example").size());
+		System.out.println("TEST");
+		//bookService.createNewBook();
+		
 	}
 
 }

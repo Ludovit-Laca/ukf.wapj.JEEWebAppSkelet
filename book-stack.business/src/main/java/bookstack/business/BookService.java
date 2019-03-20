@@ -22,4 +22,13 @@ public class BookService {
 		return bookDao.findAll();
 	}
 
+	public void createNewBook() {
+		Book kniha = new Book();
+		kniha.setTitle("example");
+		kniha.setAutor("autor");
+		kniha.setIsbn("isbn");
+		kniha.setIdauthor(1);
+		bookDao.create(kniha);
+	}
+	
 }
