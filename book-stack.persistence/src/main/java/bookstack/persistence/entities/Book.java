@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -21,8 +22,9 @@ public class Book implements Serializable {
 
 	private static final long serialVersionUID = -7759431903190558099L;
 	
-	@Id @GeneratedValue
-	private Integer idbook;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY )
+	private Integer id;
 	
 	@Column(name = "title")
 	private String title;
@@ -30,52 +32,57 @@ public class Book implements Serializable {
 	@Column(name = "isbn")
 	private String isbn;
 	
-	@ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-	@JoinColumn(name = "author")
-	private Author idauthor;
-
-	public Author getIdauthor() {
-		return idauthor;
-	}
-
-	public void setIdauthor(Author idauthor) {
-		this.idauthor = idauthor;
-	}
-
+    @ManyToOne(fetch = FetchType.EAGER, cascade= {CascadeType.PERSIST,CascadeType.MERGE})
+    @JoinColumn(name = "author")
+	private Author autor;
+	
 	public Book() {}
+
 
 	public Book(String title, String isbn) {
 		super();
 		this.title = title;
 		this.isbn = isbn;
 	}
-	
-	/*
-	 * Getters and setters
-	 */
+
+
+	public Integer getId() {
+		return id;
+	}
+
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
 
 	public String getTitle() {
 		return title;
 	}
 
-	public Integer getIdbook() {
-		return idbook;
-	}
-
-	public void setIdbook(Integer idbook) {
-		this.idbook = idbook;
-	}
 
 	public void setTitle(String title) {
 		this.title = title;
 	}
 
+
 	public String getIsbn() {
 		return isbn;
 	}
 
+
 	public void setIsbn(String isbn) {
 		this.isbn = isbn;
+	}
+
+
+	public Author getAutor() {
+		return autor;
+	}
+
+
+	public void setAutor(Author autor) {
+		this.autor = autor;
 	}
 	
 }

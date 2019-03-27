@@ -1,5 +1,6 @@
 package bookstack.persistence.entities;
 
+import java.beans.Transient;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,15 +19,15 @@ public class Author {
 
 	@Id
 	@GeneratedValue
-	private Integer id;
-	
-	@Column(name = "firstname")
+	private int id;
+
+	@Column
 	private String name;
-	
-	@Column(name = "lastname")
+
+	@Column
 	private String surname;
-	
-	@OneToMany(mappedBy = "idauthor")
+
+	@OneToMany(mappedBy = "autor")
 	private List<Book> books;
 
 	public Author() {
@@ -70,5 +71,9 @@ public class Author {
 		this.books = books;
 	}
 	
+	@Transient
+	public String getFullName() {
+		return this.name + " " + this.surname;
+	}
 	
 }

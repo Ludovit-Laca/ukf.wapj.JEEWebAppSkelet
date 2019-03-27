@@ -10,9 +10,13 @@
 		<h:form>
 			<p:outputLabel styleClass="sectionHeading" value="Zoznam mojich knih" />
 			<h:panelGroup style="float:right; margin-bottom:20px">
+				<h:inputText value="#{booksView.author.name}"></h:inputText>
+				<h:inputText value="#{booksView.author.surname}"></h:inputText>
+				<p:commandButton value="Create from input" actionListener="#{bookController.createAuthor}"></p:commandButton>
 				<p:dataTable value="#{booksView.bookList}" var="book">
 					<p:column headerText="Title">#{book.title}</p:column>
-					<p:column headerText="Autor">#{book.autor}</p:column>
+					<p:column headerText="ISBN">#{book.isbn}</p:column>
+					<p:column headerText="Autor">#{book.autor.fullName}</p:column>
 				</p:dataTable>
 			</h:panelGroup>
 			<br />
