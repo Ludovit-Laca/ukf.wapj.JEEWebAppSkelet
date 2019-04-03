@@ -34,17 +34,17 @@ public class BookController implements Serializable{
 	private static final String[] books = {"Harry Potter","Šlabikár","Mengeleho dievca","Treblinka","Teoria pressingu","Clean code","Agile Software development handbook"};
 	
 	@Inject
-	private AuthorService authorService;
-	
-	@Inject
 	private BookService bookService;
 	
 	// ak v čase volanie BookController nie je zobrazena stranka na ktorej bude tato bean, tak bude nastavena na NULL
 	@Inject 
 	private BooksView booksView;
 	
-	//@Inject 
-	//private BookSessionStatistics bookSessionStatistics;
+	@Inject
+	private AuthorService authorService;
+	
+	@Inject 
+	private BookSessionStatistics bookSessionStatistics;
 	
 	@PostConstruct
 	private void init(){
@@ -87,10 +87,6 @@ public class BookController implements Serializable{
 		return builder.toString();
 	}
 	
-	public void createAuthor() {
-		authorService.createAuthor(booksView.getAuthor());
-	}
-	
 	public void createBook(){
 		String name = getRandomName();
 		String surname = getRandomSurname();
@@ -109,7 +105,12 @@ public class BookController implements Serializable{
 		
 		//refresh data na UI
 		booksView.setBookList(bookService.getAllBooks());
-		//bookSessionStatistics.triggerRandomBookCreationStatistics();
+		bookSessionStatistics.triggerRandomBookCreationStatistics();
+	}
+	
+	public void createAuthor() {
+		Author author = authorService.createAuthor(booksView.getAuthor());
+		System.out.println(author);
 	}
 
 }
