@@ -111,6 +111,7 @@ public class BookController implements Serializable{
 	public void createAuthor() {
 		Author author = authorService.createAuthor(booksView.getAuthor());
 		System.out.println(author);
+		booksView.setAuthor(new Author());
 	}
 
 }
