@@ -2,6 +2,7 @@ package bookstack.ui.controller;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -23,7 +24,11 @@ public class BooksView implements Serializable {
 	private String input;
 	private Author author;
 	private List<Book> bookList;
+	private Currency selectedCurrency;
 	
+	private float suma;
+	private float kSuma;
+
 	@Inject
 	private BookService bookService;
 	
@@ -33,13 +38,41 @@ public class BooksView implements Serializable {
 		bookList = bookService.getAllBooks();
 		input = "init hodnota";
 		author = new Author();
+		setSelectedCurrency(Currency.DOLAR);
 	}
 	
 	@PreDestroy
 	private void destroy(){
 		System.out.println(this.getClass().getName() + " was destroyed.");
 	}
+	
+	public void processCurrency() {
+		//System.out.println("processing currency | " + selectedCurrency + " | " + selectedCurrency.getExchange());
+		this.kSuma = suma * getSelectedCurrency().getExchange();
+		System.out.println("Suma:" + suma + ", mena:" + selectedCurrency + ", konvertovana suma: " + kSuma);
+		
+	}
 
+	public float getkSuma() {
+		return kSuma;
+	}
+
+	public void setkSuma(float kSuma) {
+		this.kSuma = kSuma;
+	}
+
+	public float getSuma() {
+		return suma;
+	}
+
+	public void setSuma(float suma) {
+		this.suma = suma;
+	}
+	
+	public String getCurrencyLabel(Currency currency) {
+		return currency.name().toLowerCase() + " " + currency.getExchange();
+	}
+	
 	public List<Book> getBookList() {
 		return bookList;
 	}
@@ -63,6 +96,16 @@ public class BooksView implements Serializable {
 		this.author = author;
 	}
 
+	public Currency getSelectedCurrency() {
+		return selectedCurrency;
+	}
+
+	public void setSelectedCurrency(Currency selectedCurrency) {
+		this.selectedCurrency = selectedCurrency;
+	}
 	
+	public List<Currency> getCurrencies() {
+		return Arrays.asList(Currency.values());
+	}
 
 }

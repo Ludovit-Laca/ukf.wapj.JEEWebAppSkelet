@@ -8,21 +8,73 @@
 <ui:composition template="/WEB-INF/layout.xhtml">
 	<ui:define name="content">
 		<h:form id="bookForm">
-		<p:message for="nameId" ></p:message>
+			<p:message for="nameId"></p:message>
 			<p:outputLabel styleClass="sectionHeading" value="Zoznam mojich knih" />
 			<h:panelGroup style="float:right; margin-bottom:20px">
-			<p:outputLabel for="nameId">Name:</p:outputLabel>
-			<h:inputText id="nameId" value="#{booksView.author.name}" required="true" requiredMessage="Name is required"></h:inputText>
-			<h:inputText value="#{booksView.author.surname}"></h:inputText>
-			<p:commandButton value="Create from input" actionListener="#{bookController.createAuthor}" update="@form"></p:commandButton>
-			<p:commandButton value="Create Random Book" style="margin:10px;" update="@form" actionListener="#{bookController.createBook}"/>
+				<p:outputLabel for="nameId">Name:</p:outputLabel>
+				<h:inputText id="nameId" value="#{booksView.author.name}"
+					required="true" requiredMessage="Name is required"></h:inputText>
+				<h:inputText value="#{booksView.author.surname}"></h:inputText>
+				<p:commandButton value="Create from input"
+					actionListener="#{bookController.createAuthor}" update="@form"></p:commandButton>
+				<p:commandButton value="Create Random Book" style="margin:10px;"
+					update="@form" actionListener="#{bookController.createBook}" />
 				<p:dataTable value="#{booksView.bookList}" var="book">
 					<p:column headerText="Title">#{book.title}</p:column>
-					<p:column headerText="Title">#{book.isbn}</p:column>
+					<p:column headerText="ISBN">#{book.isbn}</p:column>
 					<p:column headerText="Autor">#{book.autor.fullName}</p:column>
 				</p:dataTable>
 			</h:panelGroup>
 			<br />
+		</h:form>
+		<h:selectOneMenu id="tyzdenMenu" style="width:125px">
+			<f:selectItems value="#{data.weeks}" />
+		</h:selectOneMenu>
+		<br />
+		<h:form>
+		<!-- ULOHA -->
+			<p:inputText id="inputAjax" value="#{booksView.suma}">
+				<p:ajax listener="#{booksView.processCurrency}" />
+			</p:inputText>
+			<p:selectOneMenu id="selectCurrencyAjaxId" style="width:125px"
+				value="#{booksView.selectedCurrency}">
+				<p:ajax update="selectedCurrencyAjaxId" listener="#{booksView.processCurrency}" />
+				<f:selectItems value="#{booksView.currencies}" var="currency"
+					itemValue="#{currency}"
+					itemLabel="#{booksView.getCurrencyLabel(currency)}" />
+			</p:selectOneMenu>
+			<h:outputText id="selectedCurrencyAjaxId"
+				value="#{booksView.kSuma}" />
+		</h:form>
+		<!-- KONIEC ULOHY -->
+		<br />
+		<h:form>
+			<p:outputLabel value="Hodnota v €: " />
+			<h:inputText id="inputEuro" converter="euroConverter"
+				value="#{euroConverter.suma}" />
+			<p:outputLabel value=" v " />
+			<p:messages id="messages" />
+			<!-- ULOHA - pri selecte hned zobrazi kurz v outputLabel -->
+
+			<p:selectOneMenu update="display" id="selectCurrencyId"
+				style="width:125px" value="#{booksView.selectedCurrency}">
+				<f:selectItems value="#{booksView.currencies}" var="currency"
+					itemValue="#{currency}"
+					itemLabel="#{booksView.getCurrencyLabel(currency)}" />
+			</p:selectOneMenu>
+			<p:commandButton value="Submit currency"
+				action="#{booksView.processCurrency()}"
+				process="selectCurrencyId @this" update="selectCurrencyId messages" />
+
+			<p:outputLabel value=" je " />
+			<h:outputText id="outputSuma" value="#{euroConverter.novaSuma}">
+				<f:convertNumber maxFractionDigits="3" />
+			</h:outputText>
+			<br />
+
+			<h:commandButton value="Spracuj" action="#{euroConverter.spracuj}"
+				update="@form" />
+
 		</h:form>
 	</ui:define>
 </ui:composition>
