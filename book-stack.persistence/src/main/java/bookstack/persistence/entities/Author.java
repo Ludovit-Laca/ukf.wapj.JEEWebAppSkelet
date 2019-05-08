@@ -77,9 +77,4 @@ public class Author {
 	public String getFullName() {
 		return this.name + " " + this.surname;
 	}
-	
-	/*@Transient
-	public int getBooksCount() {
-		return this.books.size();
-	}*/
 }
