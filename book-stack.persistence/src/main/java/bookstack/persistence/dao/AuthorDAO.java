@@ -22,7 +22,7 @@ public class AuthorDAO extends AbstractDAO<Author> {
 	 * @return author identified by name and surname, otherwise NULL
 	 */
 	public Author getAuthorByName(String name, String surname) {
-		TypedQuery<Author> query = em.createNamedQuery("findBooksByNames", Author.class);
+		TypedQuery<Author> query = em.createNamedQuery("findAuthorByName", Author.class);
 		query.setParameter("name", name);
 		query.setParameter("surname", surname);
 		try {

@@ -11,6 +11,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import bookstack.business.AuthorService;
 import bookstack.business.BookService;
 import bookstack.persistence.entities.Author;
 import bookstack.persistence.entities.Book;
@@ -23,54 +24,54 @@ public class BooksView implements Serializable {
 	
 	private String input;
 	private Author author;
+	private Book book;
 	private List<Book> bookList;
-	private Currency selectedCurrency;
-	
-	private float suma;
-	private float kSuma;
+	private List<Author> authorList;
+	private Author selectedAuthor;
 
 	@Inject
 	private BookService bookService;
+	
+	@Inject
+	private AuthorService authorService;
 	
 	@PostConstruct
 	private void init() {
 		System.out.println(this.getClass().getName() + " created.");
 		bookList = bookService.getAllBooks();
+		authorList = authorService.getAllAuthors();
 		input = "init hodnota";
 		author = new Author();
-		setSelectedCurrency(Currency.DOLAR);
+		book = new Book();
 	}
-	
+
 	@PreDestroy
 	private void destroy(){
 		System.out.println(this.getClass().getName() + " was destroyed.");
 	}
 	
-	public void processCurrency() {
-		//System.out.println("processing currency | " + selectedCurrency + " | " + selectedCurrency.getExchange());
-		this.kSuma = suma * getSelectedCurrency().getExchange();
-		System.out.println("Suma:" + suma + ", mena:" + selectedCurrency + ", konvertovana suma: " + kSuma);
-		
+	public Book getBook() {
+		return book;
 	}
 
-	public float getkSuma() {
-		return kSuma;
-	}
-
-	public void setkSuma(float kSuma) {
-		this.kSuma = kSuma;
-	}
-
-	public float getSuma() {
-		return suma;
-	}
-
-	public void setSuma(float suma) {
-		this.suma = suma;
+	public void setBook(Book book) {
+		this.book = book;
 	}
 	
-	public String getCurrencyLabel(Currency currency) {
-		return currency.name().toLowerCase() + " " + currency.getExchange();
+	public Author getSelectedAuthor() {
+		return selectedAuthor;
+	}
+
+	public void setSelectedAuthor(Author selectedAuthor) {
+		this.selectedAuthor = selectedAuthor;
+	}
+
+	public List<Author> getAuthorList() {
+		return authorList;
+	}
+
+	public void setAuthorList(List<Author> authorList) {
+		this.authorList = authorList;
 	}
 	
 	public List<Book> getBookList() {
@@ -94,18 +95,6 @@ public class BooksView implements Serializable {
 
 	public void setAuthor(Author author) {
 		this.author = author;
-	}
-
-	public Currency getSelectedCurrency() {
-		return selectedCurrency;
-	}
-
-	public void setSelectedCurrency(Currency selectedCurrency) {
-		this.selectedCurrency = selectedCurrency;
-	}
-	
-	public List<Currency> getCurrencies() {
-		return Arrays.asList(Currency.values());
 	}
 
 }

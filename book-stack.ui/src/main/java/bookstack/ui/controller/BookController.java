@@ -88,14 +88,16 @@ public class BookController implements Serializable{
 	}
 	
 	public void createBook(){
-		String name = getRandomName();
+		Author author = booksView.getSelectedAuthor();
+		Book book = booksView.getBook();
+		/*String name = getRandomName();
 		String surname = getRandomSurname();
 
 		Author author = new Author(name, surname);
 		
 		Book book = new Book();
 		book.setTitle(books[ThreadLocalRandom.current().nextInt(0,books.length)]);
-		book.setIsbn(generateIsbn());
+		book.setIsbn(generateIsbn());*/
 		
 		//Nastavim vazbu na autora
 		//book.setAutor(author);
@@ -105,6 +107,8 @@ public class BookController implements Serializable{
 		
 		//refresh data na UI
 		booksView.setBookList(bookService.getAllBooks());
+		booksView.setBook(new Book());
+		booksView.setSelectedAuthor(booksView.getAuthorList().get(0));
 		bookSessionStatistics.triggerRandomBookCreationStatistics();
 	}
 	

@@ -1,63 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
-
-<!-- f:loadBundle basename="resources" var="msg" /-->
-<f:view locale="#{languageBean.localeCode}">
 <h:head>
-	<title><ui:insert name="pageTitle">UniStats</ui:insert></title>
-	<link rel="stylesheet"
-		href="#{request.contextPath}/resources/css/font-awesome/css/font-awesome.min.css" />
-	<link rel="stylesheet"
-		href="#{request.contextPath}/resources/css/font-awesome/css/font-awesome.css" />
-	<!--[if IE 7]>
-		  <link rel="stylesheet" href="#{request.contextPath}/resources/css/font-awesome/css/font-awesome-ie7.min.css">
-		<![endif]-->
-	<h:outputStylesheet library="css" name="main.css" />
-	<h:outputStylesheet library="css" name="grid.css" />
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<meta name="description" content="" />
+	<meta name="author" content="" />
+
+	<title><ui:insert name="title">PortalKnih</ui:insert></title>
+
+	<!-- Bootstrap core CSS -->
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css"
+		href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
+	<h:outputStylesheet library="css" name="layout.css" />
+	<ui:insert name="head" />
 </h:head>
-
-<h:body styleClass="wrapper">
-	<div>
-		<ui:include src="/header.xhtml" />
-	</div>
-	<div class="ui-grid ui-grid-responsive">
-
-		<br />
-		<div class="ui-grid-row">
-			<div class="ui-grid-col-2">
-
-				<h:panelGroup id="leftMenu">
-
-					<h:form id="MenuForm">
-						<p:menu id="mainMenu" styleClass="main-menu">
-							<p:submenu label="Knihy">
-								<p:menuitem value="Moje knihy"
-									action="home.xhtml?faces-redirect=true"></p:menuitem>
-							</p:submenu>
-							<p:submenu label="Autori">
-								<p:menuitem value="#{lang['author.new']}" action="newAuthor.xhtml?faces-redirect=true"></p:menuitem>
-							</p:submenu>
-						</p:menu>
-					</h:form>
-				</h:panelGroup>
-
-			</div>
-			<div class="ui-grid-col-9" style="margin-left: 45px">
-
-				<!-- Search input in future -->
-				<!-- Dock component in future -->
-				<div class="content">
-					<ui:insert name="content">No content available.</ui:insert>
-				</div>
-			</div>
-		</div>
-	</div>
+<h:body>
+	<ui:include src="/header.xhtml" />
+	<ui:insert name="body" />
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<!-- DataTables -->
+	<script type="text/javascript" charset="utf8"
+		src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+	<h:outputScript library="js" name="bootstrap.min.js" />
+	<h:outputScript library="js" name="layout.js" />
 </h:body>
-</f:view>
-
-
 </html>

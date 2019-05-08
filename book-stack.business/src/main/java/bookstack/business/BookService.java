@@ -35,7 +35,6 @@ public class BookService {
 			//neexistuje vytvorime noveho
 			book.setAutor(author);
 		}
-		
 		return this.bookDao.create(book);
 	}
 }
