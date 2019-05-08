@@ -6,6 +6,7 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <!-- f:loadBundle basename="resources" var="msg" /-->
+<f:view locale="#{languageBean.localeCode}">
 <h:head>
 	<title><ui:insert name="pageTitle">UniStats</ui:insert></title>
 	<link rel="stylesheet"
@@ -37,8 +38,8 @@
 								<p:menuitem value="Moje knihy"
 									action="home.xhtml?faces-redirect=true"></p:menuitem>
 							</p:submenu>
-							<p:submenu label="Iba taka zalozka">
-								<p:menuitem value="Prazdny item" action="#"></p:menuitem>
+							<p:submenu label="Autori">
+								<p:menuitem value="#{lang['author.new']}" action="newAuthor.xhtml?faces-redirect=true"></p:menuitem>
 							</p:submenu>
 						</p:menu>
 					</h:form>
@@ -56,5 +57,7 @@
 		</div>
 	</div>
 </h:body>
+</f:view>
+
 
 </html>

@@ -7,6 +7,13 @@
 
 <h:head></h:head>
 <body>
+<h:form>
+<h:selectOneMenu value="#{languageBean.localeCode}" onchange="submit()"
+			valueChangeListener="#{languageBean.countryLocaleCodeChanged}">
+   			<f:selectItems value="#{languageBean.countriesInMap}" /> 
+   		</h:selectOneMenu>
+</h:form>
+
 	<div style="width: 100%; float: left" align="center">
 		<div style="float: right;" align="right">Header section..</div>
 	</div>
