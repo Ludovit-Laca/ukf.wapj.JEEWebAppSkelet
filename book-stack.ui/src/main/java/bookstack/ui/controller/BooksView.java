@@ -49,7 +49,6 @@ public class BooksView implements Serializable {
 		categoryList = categoryService.getAllCategories();
 		author = new Author();
 		book = new Book();
-		System.out.println(authorService.getAllAuthorsJson());
 		graphData = authorService.getAllAuthorsJson();
 	}
 
