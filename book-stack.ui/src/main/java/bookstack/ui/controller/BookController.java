@@ -13,6 +13,7 @@ import bookstack.business.AuthorService;
 import bookstack.business.BookService;
 import bookstack.persistence.entities.Author;
 import bookstack.persistence.entities.Book;
+import bookstack.persistence.entities.Category;
 
 //anotacia, ktorou vieme jednoznacne identifikovat nazov beany v kontajneri ak je
 //pouzita bez parametra : @Named pouzije sa ako identifikator nazov beany (bookController)
@@ -88,12 +89,13 @@ public class BookController implements Serializable{
 	public void createBook(){
 		Author author = booksView.getSelectedAuthor();
 		Book book = booksView.getBook();
+		Category category = booksView.getSelectedCategory();
 		
 		//Nastavim vazbu na autora
 		//book.setAutor(author);
 		//author.getBooks().add(book);
 		//IBA TOTO VOLANIE SA VYKONAVA V TRANSAKCII CDI NEMA PODPORU PRE TRANSAKCIE EJB ANO
-		bookService.create(book,author);
+		bookService.create(book,author, category);
 		
 		//refresh data na UI
 		booksView.setBookList(bookService.getAllBooks());

@@ -11,8 +11,10 @@ import javax.inject.Named;
 
 import bookstack.business.AuthorService;
 import bookstack.business.BookService;
+import bookstack.business.CategoryService;
 import bookstack.persistence.entities.Author;
 import bookstack.persistence.entities.Book;
+import bookstack.persistence.entities.Category;
 
 @ViewScoped
 @Named
@@ -24,7 +26,9 @@ public class BooksView implements Serializable {
 	private Book book;
 	private List<Book> bookList;
 	private List<Author> authorList;
+	private List<Category> categoryList;
 	private Author selectedAuthor;
+	private Category selectedCategory;
 
 	@Inject
 	private BookService bookService;
@@ -32,11 +36,15 @@ public class BooksView implements Serializable {
 	@Inject
 	private AuthorService authorService;
 	
+	@Inject
+	private CategoryService categoryService;
+	
 	@PostConstruct
 	private void init() {
 		System.out.println(this.getClass().getName() + " created.");
 		bookList = bookService.getAllBooks();
 		authorList = authorService.getAllAuthors();
+		categoryList = categoryService.getAllCategories();
 		author = new Author();
 		book = new Book();
 	}
@@ -45,7 +53,15 @@ public class BooksView implements Serializable {
 	private void destroy(){
 		System.out.println(this.getClass().getName() + " was destroyed.");
 	}
-	
+
+	public Author getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(Author author) {
+		this.author = author;
+	}
+
 	public Book getBook() {
 		return book;
 	}
@@ -53,13 +69,13 @@ public class BooksView implements Serializable {
 	public void setBook(Book book) {
 		this.book = book;
 	}
-	
-	public Author getSelectedAuthor() {
-		return selectedAuthor;
+
+	public List<Book> getBookList() {
+		return bookList;
 	}
 
-	public void setSelectedAuthor(Author selectedAuthor) {
-		this.selectedAuthor = selectedAuthor;
+	public void setBookList(List<Book> bookList) {
+		this.bookList = bookList;
 	}
 
 	public List<Author> getAuthorList() {
@@ -69,21 +85,31 @@ public class BooksView implements Serializable {
 	public void setAuthorList(List<Author> authorList) {
 		this.authorList = authorList;
 	}
-	
-	public List<Book> getBookList() {
-		return bookList;
+
+	public List<Category> getCategoryList() {
+		return categoryList;
 	}
 
-	public void setBookList(List<Book> bookList) {
-		this.bookList = bookList;
-	}
-	
-	public Author getAuthor() {
-		return author;
+	public void setCategoryList(List<Category> categoryList) {
+		this.categoryList = categoryList;
 	}
 
-	public void setAuthor(Author author) {
-		this.author = author;
+	public Author getSelectedAuthor() {
+		return selectedAuthor;
 	}
+
+	public void setSelectedAuthor(Author selectedAuthor) {
+		this.selectedAuthor = selectedAuthor;
+	}
+
+	public Category getSelectedCategory() {
+		return selectedCategory;
+	}
+
+	public void setSelectedCategory(Category selectedCategory) {
+		this.selectedCategory = selectedCategory;
+	}
+	
+	
 
 }
