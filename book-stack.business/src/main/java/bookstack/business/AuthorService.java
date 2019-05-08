@@ -32,6 +32,7 @@ public class AuthorService {
 		return this.authorDAO.findAll();
 	}
 	
+	// Nie úplne korektné riešenie, ale funguje :)
 	public String getAllAuthorsJson() {
 		List<Author> authors = getAllAuthors();
 		JsonArray arr = new JsonArray();

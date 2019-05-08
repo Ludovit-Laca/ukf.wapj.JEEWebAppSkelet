@@ -17,11 +17,11 @@
 								<b:dataTable id="bookTable" value="#{booksView.bookList}"
 									var="book">
 									<b:dataTableColumn label="ID" value="#{book.id}" />
-									<b:dataTableColumn label="Kategória" value="#{book.category.category}" />
+									<b:dataTableColumn label="Kategória"
+										value="#{book.category.category}" />
 									<b:dataTableColumn label="Názov knihy" value="#{book.title}" />
 									<b:dataTableColumn label="ISBN" value="#{book.isbn}" />
-									<b:dataTableColumn label="Autor"
-										value="#{book.autor.fullName}" />
+									<b:dataTableColumn label="Autor" value="#{book.autor.fullName}" />
 								</b:dataTable>
 							</b:form>
 						</div>
@@ -73,12 +73,36 @@
 											itemValue="#{category}" itemLabel="#{category.category}" />
 									</b:selectOneMenu>
 								</div>
-								<b:commandButton look="primary" value="Vytvoriť knihu" type="submit"
-									ajax="false" actionListener="#{bookController.createBook}" />
+								<b:commandButton look="primary" value="Vytvoriť knihu"
+									type="submit" ajax="false"
+									actionListener="#{bookController.createBook}" />
 							</b:form>
 						</div>
 					</div>
 
+				</b:column>
+				<b:column large-screen="6">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							<h3 class="panel-title">Počet kníh autorov</h3>
+						</div>
+						<div class="panel-body">
+							<div id="graph">
+								<script>
+									var bar = Morris.Bar({
+										element : 'graph',
+										resize : true,
+										data : #{booksView.graphData},
+										xkey : 'x',
+										ykeys : [ 'y' ],
+										labels : [ 'Počet kníh' ],
+										barColors : [ '#28a745' ],
+										hideHover : 'auto',
+									});
+								</script>
+							</div>
+						</div>
+					</div>
 				</b:column>
 			</b:row>
 		</b:container>

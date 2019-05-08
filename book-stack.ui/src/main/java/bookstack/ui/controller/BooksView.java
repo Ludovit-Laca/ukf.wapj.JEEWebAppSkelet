@@ -29,6 +29,8 @@ public class BooksView implements Serializable {
 	private List<Category> categoryList;
 	private Author selectedAuthor;
 	private Category selectedCategory;
+	
+	private String graphData;
 
 	@Inject
 	private BookService bookService;
@@ -48,6 +50,7 @@ public class BooksView implements Serializable {
 		author = new Author();
 		book = new Book();
 		System.out.println(authorService.getAllAuthorsJson());
+		graphData = authorService.getAllAuthorsJson();
 	}
 
 	@PreDestroy
@@ -65,6 +68,14 @@ public class BooksView implements Serializable {
 
 	public Book getBook() {
 		return book;
+	}
+
+	public String getGraphData() {
+		return graphData;
+	}
+
+	public void setGraphData(String graphData) {
+		this.graphData = graphData;
 	}
 
 	public void setBook(Book book) {
