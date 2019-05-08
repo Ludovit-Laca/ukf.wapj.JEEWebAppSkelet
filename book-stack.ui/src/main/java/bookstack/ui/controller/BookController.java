@@ -5,14 +5,12 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
-import javax.ejb.Stateless;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import bookstack.business.AuthorService;
 import bookstack.business.BookService;
-import bookstack.persistence.dao.BookDAO;
 import bookstack.persistence.entities.Author;
 import bookstack.persistence.entities.Book;
 
@@ -90,14 +88,6 @@ public class BookController implements Serializable{
 	public void createBook(){
 		Author author = booksView.getSelectedAuthor();
 		Book book = booksView.getBook();
-		/*String name = getRandomName();
-		String surname = getRandomSurname();
-
-		Author author = new Author(name, surname);
-		
-		Book book = new Book();
-		book.setTitle(books[ThreadLocalRandom.current().nextInt(0,books.length)]);
-		book.setIsbn(generateIsbn());*/
 		
 		//Nastavim vazbu na autora
 		//book.setAutor(author);
@@ -110,12 +100,6 @@ public class BookController implements Serializable{
 		booksView.setBook(new Book());
 		booksView.setSelectedAuthor(booksView.getAuthorList().get(0));
 		bookSessionStatistics.triggerRandomBookCreationStatistics();
-	}
-	
-	public void createAuthor() {
-		Author author = authorService.createAuthor(booksView.getAuthor());
-		System.out.println(author);
-		booksView.setAuthor(new Author());
 	}
 
 }

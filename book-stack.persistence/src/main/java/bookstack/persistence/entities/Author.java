@@ -4,8 +4,10 @@ import java.beans.Transient;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
@@ -27,7 +29,7 @@ public class Author {
 	@Column
 	private String surname;
 
-	@OneToMany(mappedBy = "autor")
+	@OneToMany(mappedBy = "autor", fetch = FetchType.EAGER)
 	private List<Book> books;
 
 	public Author() {
@@ -76,4 +78,8 @@ public class Author {
 		return this.name + " " + this.surname;
 	}
 	
+	/*@Transient
+	public int getBooksCount() {
+		return this.books.size();
+	}*/
 }

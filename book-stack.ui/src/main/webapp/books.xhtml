@@ -17,9 +17,9 @@
 								<b:dataTable id="bookTable" value="#{booksView.bookList}"
 									var="book">
 									<b:dataTableColumn label="ID" value="#{book.id}" />
-									<b:dataTableColumn label="Title" value="#{book.title}" />
+									<b:dataTableColumn label="Názov knihy" value="#{book.title}" />
 									<b:dataTableColumn label="ISBN" value="#{book.isbn}" />
-									<b:dataTableColumn label="Author"
+									<b:dataTableColumn label="Autor"
 										value="#{book.autor.fullName}" />
 								</b:dataTable>
 							</b:form>

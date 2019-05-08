@@ -3,26 +3,64 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui">
 
-	<ui:composition template="/WEB-INF/layout.xhtml">
+<ui:composition template="/WEB-INF/layout.xhtml">
 	<ui:define name="title">Autori | PortalKnih</ui:define>
-		<ui:define name="body">
-		<h:form id="newAuthorForm">
-			<p:message for="nameId"></p:message>
-			<p:outputLabel styleClass="sectionHeading" value="#{lang['author.new.author']}" />
-			<h:panelGroup style="float:right; margin-bottom:20px">
-				<p:outputLabel for="nameId">Name:</p:outputLabel>
-				<h:inputText id="nameId" value="#{booksView.author.name}"
-					required="true" requiredMessage="Name is required"></h:inputText>
-				<h:inputText value="#{booksView.author.surname}"></h:inputText>
-				<p:commandButton value="Create from input"
-					actionListener="#{bookController.createAuthor}" update="@form"></p:commandButton>
-				<p:commandButton value="Create Random Book" style="margin:10px;"
-					update="@form" actionListener="#{bookController.createBook}" />
-			</h:panelGroup>
-			<br />
-		</h:form>
-		</ui:define>
-	</ui:composition>
+	<ui:define name="body">
+		<b:container>
+			<b:row>
+				<b:column large-screen="12">
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<b:form>
+								<b:dataTable id="authorTable" value="#{authorsView.authorList}"
+									var="author">
+									<b:dataTableColumn label="ID" value="#{author.id}" />
+									<b:dataTableColumn label="Meno" value="#{author.name}" />
+									<b:dataTableColumn label="Priezvisko" value="#{author.surname}" />
+									<b:dataTableColumn label="Počet kníh"
+										value="#{author.books.size()}" />
+								</b:dataTable>
+							</b:form>
+						</div>
+					</div>
+
+				</b:column>
+			</b:row>
+			<b:row>
+				<b:column large-screen="6">
+					<div class="panel panel-success">
+						<div class="panel-heading">
+							<h3 class="panel-title">Pridať Autora</h3>
+						</div>
+						<div class="panel-body">
+							<b:form id="authorForm" method="post">
+								<div class="form-group">
+									<b:message for="authorNameId" />
+									<label class="control-label">Meno:</label>
+									<b:inputText id="authorNameId" required="true"
+										requiredMessage="Author's name is required"
+										value="#{authorsView.author.name}" />
+								</div>
+								<div class="form-group">
+									<b:message for="authorSurnameId" />
+									<label>Priezvisko:</label>
+									<b:inputText id="authorSurnameId" required="true"
+										requiredMessage="Author's surname is required"
+										value="#{authorsView.author.surname}" />
+								</div>
+								
+								<b:commandButton look="success" value="Pridať autora"
+									type="submit" ajax="false"
+									actionListener="#{authorController.createAuthor}" />
+							</b:form>
+						</div>
+					</div>
+
+				</b:column>
+			</b:row>
+		</b:container>
+	</ui:define>
+</ui:composition>
 </html>

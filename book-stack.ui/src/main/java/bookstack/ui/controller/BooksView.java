@@ -1,8 +1,6 @@
 package bookstack.ui.controller;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -22,7 +20,6 @@ public class BooksView implements Serializable {
 	
 	private static final long serialVersionUID = 6559129950166292602L;
 	
-	private String input;
 	private Author author;
 	private Book book;
 	private List<Book> bookList;
@@ -40,7 +37,6 @@ public class BooksView implements Serializable {
 		System.out.println(this.getClass().getName() + " created.");
 		bookList = bookService.getAllBooks();
 		authorList = authorService.getAllAuthors();
-		input = "init hodnota";
 		author = new Author();
 		book = new Book();
 	}
@@ -81,14 +77,7 @@ public class BooksView implements Serializable {
 	public void setBookList(List<Book> bookList) {
 		this.bookList = bookList;
 	}
-
-	public String getInput() {
-		return input;
-	}
-
-	public void setInput(String input) {
-		this.input = input;
-	}
+	
 	public Author getAuthor() {
 		return author;
 	}
