@@ -3,19 +3,19 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui" 
+	xmlns:b="http://bootsfaces.net/ui">
 
 <h:head></h:head>
-<body>
-<h:form>
-<h:selectOneMenu value="#{languageBean.localeCode}" onchange="submit()"
-			valueChangeListener="#{languageBean.countryLocaleCodeChanged}">
-   			<f:selectItems value="#{languageBean.countriesInMap}" /> 
-   		</h:selectOneMenu>
-</h:form>
-
-	<div style="width: 100%; float: left" align="center">
-		<div style="float: right;" align="right">Header section..</div>
-	</div>
-</body>
+<h:body>
+	<b:navBar position="top" sticky="true" brand="Brand" brandHref="#"
+		fluid="true" inverse="true">
+		<b:navbarLinks>
+		<b:navLink value="Domov" href="helloBootstrap.xhtml?faces-redirect=true"></b:navLink>
+			<b:navLink value="Link" href="home.xhtml?faces-redirect=true"></b:navLink>
+			<b:navLink value="Autori" href="newAuthor.xhtml?faces-redirect=true"></b:navLink>
+		</b:navbarLinks>
+	</b:navBar>
+</h:body>
 </html>
+
