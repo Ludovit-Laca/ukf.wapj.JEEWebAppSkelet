@@ -91,16 +91,13 @@ public class BookController implements Serializable{
 		Book book = booksView.getBook();
 		Category category = booksView.getSelectedCategory();
 		
-		//Nastavim vazbu na autora
-		//book.setAutor(author);
-		//author.getBooks().add(book);
-		//IBA TOTO VOLANIE SA VYKONAVA V TRANSAKCII CDI NEMA PODPORU PRE TRANSAKCIE EJB ANO
 		bookService.create(book,author, category);
 		
 		//refresh data na UI
 		booksView.setBookList(bookService.getAllBooks());
 		booksView.setBook(new Book());
 		booksView.setSelectedAuthor(booksView.getAuthorList().get(0));
+		booksView.setGraphData(authorService.getAllAuthorsJson());
 		bookSessionStatistics.triggerRandomBookCreationStatistics();
 	}
 
