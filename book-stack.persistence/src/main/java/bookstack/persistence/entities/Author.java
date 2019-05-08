@@ -14,7 +14,7 @@ import javax.persistence.OneToMany;
 
 @Entity
 @NamedQueries({
-	@NamedQuery(name = "findBooksByName", query = "SELECT a FROM Author a WHERE a.name LIKE :name AND a.surname LIKE :surname")})
+	@NamedQuery(name = "findAuthorByName", query = "SELECT a FROM Author a WHERE a.name LIKE :name AND a.surname LIKE :surname")})
 public class Author {
 
 	@Id
