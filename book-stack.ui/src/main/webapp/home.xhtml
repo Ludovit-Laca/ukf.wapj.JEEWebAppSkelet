@@ -8,32 +8,60 @@
 	<ui:define name="body">
 		<div class="container">
 			<div class="jumbotron">
-				<h1>Hello, JSF!</h1>
+				<h1>PortalKnih</h1>
+				<p class="lead">Úloha na predmet KI/WAJ/18 | Adam Zverka</p>
 			</div>
-			<div class="starter-template">
-				<h1>Bootstrap starter template</h1>
-				<p class="lead">
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-					Sed vehicula facilisis ultricies. Sed sodales, neque sit 
-					amet gravida faucibus, sem velit maximus nisl, eget euismod sem enim sed magna.
-				</p>
+			<div>
+				<h3>Moje riešenie:</h3>
+				<div class="row">
+					<div class="col-md-12">
+						<ul>
+							<li>Rozšíril som DB o kategórie (one-to-many vzťah)</li>
+							<li>V aplikácii som vytvoril Category entitu, DAO pre túto
+								entitu a namapoval som vzťahy</li>
+							<li>Zmenil som vzhľad stránky
+								<ul>
+									<li>Namiesto PrimeFaces som použil BootsFaces (komponenty)
+										a Bootstrap (layout)</li>
+									<li>Pridal som Morris.js grafy (iba cez CDN), dáta pre
+										tieto grafy musia byť v JSON, takže som ešte pridal Gson
+										dependency</li>
+									<li>Aplikácia obsahuje navigáciu, cez ktorú sa vieme
+										dostať na úvodnú stránku a stránky pre knihy, autorov, a
+										kategórie</li>
+									<li>Na tabuľky som aplikoval DataTables, ktoré umožňuje
+										stránkovanie, zoradenie a vyhľadávanie údajov</li>
+								</ul>
+							</li>
+							<li>Každá entita má vlastnú stránku na ktorej sa dá cez
+								formulár pridať nový záznam (knihám sa dá cez selectOneMenu
+								pridať autor a kategória</li>
+						</ul>
+					</div>
+				</div>
 			</div>
 			<div class="row">
-				<div class="col-md-4"><p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-					Sed vehicula facilisis ultricies. Sed sodales, neque sit 
-					amet gravida faucibus, sem velit maximus nisl, eget euismod sem enim sed magna.
-				</p></div>
-				<div class="col-md-4"><p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-					Sed vehicula facilisis ultricies. Sed sodales, neque sit 
-					amet gravida faucibus, sem velit maximus nisl, eget euismod sem enim sed magna.
-				</p></div>
-				<div class="col-md-4"><p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-					Sed vehicula facilisis ultricies. Sed sodales, neque sit 
-					amet gravida faucibus, sem velit maximus nisl, eget euismod sem enim sed magna.
-				</p></div>
+				<div class="col-md-4">
+					<h4>Lorem ipsum</h4>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+						vehicula facilisis ultricies. Sed sodales, neque sit amet gravida
+						faucibus, sem velit maximus nisl, eget euismod sem enim sed magna.
+					</p>
+				</div>
+				<div class="col-md-4">
+					<h4>Lorem ipsum</h4>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+						vehicula facilisis ultricies. Sed sodales, neque sit amet gravida
+						faucibus, sem velit maximus nisl, eget euismod sem enim sed magna.
+					</p>
+				</div>
+				<div class="col-md-4">
+					<h4>Lorem ipsum</h4>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+						vehicula facilisis ultricies. Sed sodales, neque sit amet gravida
+						faucibus, sem velit maximus nisl, eget euismod sem enim sed magna.
+					</p>
+				</div>
 			</div>
 		</div>
 		<!-- /.container -->
